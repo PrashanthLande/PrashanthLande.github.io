@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prashanth Lande</title>
+<meta name="description" content="Tech lead and AI/ML engineer building document AI systems: OCR, vision-language models, LLM extraction and the infrastructure that serves them. Docling contributor.">
+<meta property="og:title" content="Prashanth Lande">
+<meta property="og:description" content="Tech lead and AI/ML engineer. Document AI, LLMs, agents, evaluation and inference. Docling contributor.">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/102601690?v=4">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='3' y='3' width='26' height='26' rx='3' fill='none' stroke='%232f5bd3' stroke-width='3' stroke-dasharray='5 3'/><text x='16' y='21' font-family='Arial' font-weight='700' font-size='13' text-anchor='middle' fill='%232f5bd3'>PL</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f7fa;
+    --ink: #1b2433;
+    --muted: #5a6577;
+    --rule: #dde3ec;
+    --box: #2f5bd3;
+    --box-soft: rgba(47, 91, 211, 0.08);
+    --tag-ink: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #141a24;
+      --ink: #e6ebf3;
+      --muted: #9aa6b8;
+      --rule: #2a3343;
+      --box: #7d9bff;
+      --box-soft: rgba(125, 155, 255, 0.10);
+      --tag-ink: #141a24;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  a { color: inherit; text-decoration-color: var(--box); text-underline-offset: 3px; }
+  a:hover { color: var(--box); }
+  a:focus-visible { outline: 2px solid var(--box); outline-offset: 3px; border-radius: 2px; }
+
+  .page { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- Hero: the page as a parsed document ---------- */
+  .hero { padding: 72px 0 56px; }
+  .region {
+    position: relative;
+    border: 1.5px dashed var(--box);
+    background: var(--box-soft);
+    padding: 10px 14px;
+    margin-bottom: 22px;
+    border-radius: 2px;
+  }
+  .region::before {
+    content: attr(data-label);
+    position: absolute;
+    top: -11px;
+    left: -1.5px;
+    background: var(--box);
+    color: var(--tag-ink);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    line-height: 1;
+    padding: 4px 6px;
+    border-radius: 2px 2px 2px 0;
+  }
+  .hero-top { display: flex; gap: 22px; align-items: stretch; }
+  .hero-top .region { margin-bottom: 0; }
+  .region.picture { flex: 0 0 auto; padding: 8px; display: flex; }
+  .region.picture img { width: 96px; height: 96px; border-radius: 2px; display: block; }
+  .region.title { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  h1 {
+    margin: 0;
+    font-size: clamp(34px, 7vw, 52px);
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .role { margin: 8px 0 0; color: var(--muted); font-size: 18px; }
+  .hero-row { margin-top: 30px; }
+  .summary { margin: 0; font-size: 19px; max-width: 62ch; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 0; padding: 0; list-style: none; }
+  .links a { font-weight: 500; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .region { animation: detect 600ms ease-out both; }
+    .region:nth-of-type(1) { animation-delay: 0ms; }
+    .hero-top .region:nth-child(2) { animation-delay: 120ms; }
+    .hero-row:nth-of-type(2) .region { animation-delay: 260ms; }
+    .hero-row:nth-of-type(3) .region { animation-delay: 400ms; }
+    @keyframes detect {
+      from { border-color: transparent; background: transparent; }
+      to { border-color: var(--box); background: var(--box-soft); }
+    }
+  }
+
+  /* ---------- Sections ---------- */
+  section { padding: 40px 0; border-top: 1px solid var(--rule); }
+  h2 { margin: 0 0 22px; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  h3 { margin: 0; font-size: 18px; font-weight: 600; }
+  p { margin: 0 0 12px; }
+  .muted { color: var(--muted); }
+
+  .focus { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 36px; margin: 0; padding: 0; list-style: none; }
+  .focus p { margin: 4px 0 0; color: var(--muted); font-size: 16px; }
+
+  .entry { padding: 0 0 22px; }
+  .entry:last-child { padding-bottom: 0; }
+  .entry p { margin: 6px 0 0; color: var(--muted); font-size: 16px; }
+  .entry .meta { font-size: 14px; color: var(--muted); margin-top: 6px; }
+  .status { color: var(--box); font-weight: 600; }
+
+  .stack { display: grid; grid-template-columns: 170px 1fr; gap: 10px 20px; margin: 0; }
+  .stack dt { font-weight: 600; }
+  .stack dd { margin: 0; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--rule); padding: 40px 0 64px; }
+  footer p { margin: 0 0 8px; }
+
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    .hero { padding: 48px 0 40px; }
+    .hero-top { flex-direction: column; gap: 26px; }
+    .region.picture { align-self: flex-start; }
+    .summary { font-size: 17px; }
+    .focus { grid-template-columns: 1fr; }
+    .stack { grid-template-columns: 1fr; gap: 2px; }
+    .stack dd { margin-bottom: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-top">
+      <div class="region picture" data-label="picture">
+        <img src="https://avatars.githubusercontent.com/u/102601690?v=4" alt="Prashanth Lande" width="96" height="96">
+      </div>
+      <div class="region title" data-label="title">
+        <h1>Prashanth Lande</h1>
+        <p class="role">Tech lead and AI/ML engineer, Bengaluru</p>
+      </div>
+    </div>
+
+    <div class="hero-row">
+      <div class="region" data-label="text">
+        <p class="summary">I build document AI systems that turn messy PDFs and scans into structured, usable data, covering OCR, vision-language models, LLM extraction and the infrastructure that serves them. I contribute to Docling and write about what I learn.</p>
+      </div>
+    </div>
+
+    <div class="hero-row">
+      <div class="region" data-label="list_item">
+        <ul class="links">
+          <li><a href="https://github.com/PrashanthLande">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/prashanth-lande-5890a7214/">LinkedIn</a></li>
+          <li><a href="https://medium.com/@landeprashanth">Medium</a></li>
+          <li><a href="mailto:landeprashanth@gmail.com">Email</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="focus">
+      <h2>What I work on</h2>
+      <ul class="focus">
+        <li>
+          <h3>Document AI</h3>
+          <p>OCR and vision-language models for parsing documents, tables and layouts with Docling and Chandra.</p>
+        </li>
+        <li>
+          <h3>LLMs and agents</h3>
+          <p>Structured extraction, RAG, agentic workflows and MCP servers built for production use.</p>
+        </li>
+        <li>
+          <h3>Evaluation</h3>
+          <p>Measuring what actually works, from precision and recall to field-level extraction accuracy.</p>
+        </li>
+        <li>
+          <h3>Inference and serving</h3>
+          <p>Serving models with vLLM on autoscaled GPU infrastructure, with metrics in Prometheus and Grafana.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="entry">
+        <h3><a href="https://github.com/PrashanthLande/document-intelligence-agent">document-intelligence-agent</a></h3>
+        <p>An agentic document intelligence system that understands documents, retrieves relevant evidence and answers questions with source-level provenance.</p>
+        <div class="meta">Python</div>
+      </div>
+    </section>
+
+    <section id="open-source">
+      <h2>Open source</h2>
+      <div class="entry">
+        <h3><a href="https://github.com/docling-project/docling/pull/4528">Docling: expose logprobs on the streaming API path</a></h3>
+        <p>Added token log-probabilities to Docling's streaming VLM output, so confidence can be read while a document is still being parsed.</p>
+        <div class="meta"><span class="status">Merged</span>, October 2026, PR #4528</div>
+      </div>
+      <div class="entry">
+        <p><a href="https://github.com/docling-project/docling/pulls?q=is%3Apr+author%3APrashanthLande">See all my Docling pull requests</a></p>
+      </div>
+    </section>
+
+    <section id="writing">
+      <h2>Writing</h2>
+      <div class="entry">
+        <h3><a href="https://medium.com/@landeprashanth/why-80-accuracy-can-mean-0-found-accuracy-precision-recall-and-f1-explained-8cb1226787fc">Why 80% accuracy can mean 0% found: accuracy, precision, recall and F1 explained</a></h3>
+        <p>What each metric actually tells you after training a model, and why looking at only one of them can mislead you.</p>
+        <div class="meta">October 2026, Medium</div>
+      </div>
+      <div class="entry">
+        <h3><a href="https://medium.com/@landeprashanth/beyond-ocr-how-docling-let-me-upgrade-to-a-vision-language-model-without-rewriting-my-pipeline-99671eeff2bd">Beyond OCR: how Docling let me upgrade to a vision-language model without rewriting my pipeline</a></h3>
+        <p>Why choosing a document parser for its output format, not just its OCR accuracy, made a model upgrade painless.</p>
+        <div class="meta">October 2026, Medium</div>
+      </div>
+      <div class="entry">
+        <p><a href="https://medium.com/@landeprashanth">All posts on Medium</a></p>
+      </div>
+    </section>
+
+    <section id="stack">
+      <h2>Tools I use</h2>
+      <dl class="stack">
+        <dt>AI and ML</dt><dd>PyTorch, Hugging Face Transformers, BERT, LoRA and QLoRA, synthetic data</dd>
+        <dt>LLMs and agents</dt><dd>OpenAI API, LangGraph, structured outputs, prompt engineering</dd>
+        <dt>Document AI</dt><dd>Docling, Chandra OCR, table and layout understanding</dd>
+        <dt>Infrastructure</dt><dd>vLLM, LiteLLM, AWS EC2 Auto Scaling, Docker, Docker Swarm</dd>
+        <dt>Observability</dt><dd>Prometheus, Grafana, inference metrics</dd>
+        <dt>Backend</dt><dd>Python, Flask, Kafka, RabbitMQ, MongoDB, MySQL, Linux</dd>
+      </dl>
+    </section>
+  </main>
+
+  <footer>
+    <h2>Get in touch</h2>
+    <p>Happy to talk about document AI, LLM systems or open source.</p>
+    <p><a href="mailto:landeprashanth@gmail.com">landeprashanth@gmail.com</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
